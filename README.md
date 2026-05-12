@@ -18,6 +18,12 @@ Read more: [Anthropic's skill docs](https://docs.claude.com/en/docs/agent-sdk/sk
 | [`harbour-space-lecture-retrospective`](harbour-space-lecture-retrospective/SKILL.md) | After-cohort analysis pipeline: Google Meet recordings → ffmpeg → faster-whisper transcripts → topic-mapped against your `unit-*.md` taxonomy → confusion-cluster report. Three-phase JSON-aggregating pipeline; reference implementation linked. |
 | [`harbour-space-roster-fetch`](harbour-space-roster-fetch/SKILL.md) | Pull the enrolled-student roster from `student.harbour.space` via the chrome-devtools MCP (handles the empty-`WebFetch`-on-auth-pages gotcha). Auto-flags: DS-vs-CS program skew, TA-listed-as-student, audit-track students, recomputed grading/oral-defense hour budgets. |
 
+### What the roster-fetch looks like in practice
+
+![Claude pulling a CS411 roster — names blurred](roster-screenshot.png)
+
+20 students, program mix visible, names blurred. The skill drives the chrome-devtools MCP through an authenticated tab, parses the a11y tree, and writes a markdown table back into the chat — same shape every time, ready to feed into the cohort-size budget recalculation.
+
 ## How to use
 
 These are designed to live in `.claude/skills/<name>/SKILL.md` inside your course-materials repo (project-scoped) or in `~/.claude/skills/<name>/SKILL.md` for global use. Claude Code auto-discovers them.
